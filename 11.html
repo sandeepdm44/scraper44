@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Little Demo</title>
+        <style type="text/css">
+        body {
+            margin: 10px;
+        }
+            .section {
+                position: relative;
+                display: block;
+                width: 70%;
+                margin: 0 0 10px;
+                background: red;
+            }
+            .section:before {
+                content: '';
+                display: block;
+                padding-top: 60%;
+            }
+            .guide {
+                position: fixed;
+                left: 100%;
+                top: 50%;
+                width: 20%;
+                margin-left: -5%;
+                list-style: none;
+                padding: 0;
+            }
+            .guide li {
+                position: relative;
+                margin-bottom: 10px;
+            }
+            .guide b {
+                position: relative;
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                background: black;
+                border-radius: 10px;
+                vertical-align: middle;
+            }
+            .guide b:before {
+                position: absolute;
+                content: '';
+                display: block;
+                height: 20px;
+                border-left: 2px solid black;
+                left: 9px;
+                top: -10px;
+            }
+            .guide li:first-child b:before {
+                content: none;
+            }
+            .guide span {
+                position: absolute;
+                top: -5px;
+                left: -4px;
+                margin-left: -120px;
+                display: block;
+                white-space: nowrap;
+                width: 140px;
+                text-align: right;
+                border: 1px black solid;
+                padding: 4px;
+                box-shadow: 3px 3px rgba(0,0,0,0.3);
+                border-radius: 10px;
+                opacity: 0;
+            }
+            .guide span b {
+                width: 16px;
+                height: 16px;
+                background: red;
+                border: 2px solid black;
+            }
+            .guide span b:before {
+                border-color: red;
+                left: 6px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="section">        </div>
+        <div class="section">        </div>
+        <div class="section">        </div>
+        <div class="section">        </div>
+        <div class="section">        </div>
+        <div class="section">        </div>
+
+        <ul class="guide">
+            <li><b></b><span class="indicator">Section 1 <b></b></span></li>
+            <li><b></b><span class="indicator">Section 2 <b></b></span></li>
+            <li><b></b><span class="indicator">Section 3 <b></b></span></li>
+            <li><b></b><span class="indicator">Section 4 <b></b></span></li>
+            <li><b></b><span class="indicator">Section 5 <b></b></span></li>
+            <li><b></b><span class="indicator">Section 6 <b></b></span></li>
+        </ul>
+        <script type="text/javascript">
+            //I'd measure this in JQuery, but do it mathematically here:
+            //Calculate the midpoints of all of the sections.
+            var sections = document.getElementsByClassName('section');
+            var sectiontops = [];
+            
+            function updateSectionTops() {
+                sectiontops = [];
+                var y = 10; //top body margin is 10
+                for (var s=0; s<sections.length; s++) {
+                    var h = sections[s].offsetHeight;
+                    sectiontops.push(y);
+                    y+=h;
+                }
+            }
+
+            var indicators = document.getElementsByClassName('indicator');
+
+            function updateIndicators() {
+                for (var i = 0; i < indicators.length; i++) {
+                    indicators[i].style.opacity = 0;
+                }
+                var ls = 0;
+                for (var s = 0; s < sections.length; s++) {
+                    if (sectiontops[s] > clientmid) break;
+                    ls = s;
+                }
+                for (var i = 0; i <= ls; i++) {
+                    indicators[i].style.opacity = 1;
+                }
+                
+            }
+
+            var clientmid = 0;
+            function updateClientMid() {
+                var height = window.innerHeight
+                    || document.documentElement.clientHeight
+                    || document.body.clientHeight;
+                clientmid = window.scrollY + (height / 2);
+                updateSectionTops();
+                updateIndicators();
+            }
+            updateClientMid();
+
+            window.onscroll = updateClientMid;
+            window.onresize = updateClientMid;
+        </script>
+    </body>
+</html>

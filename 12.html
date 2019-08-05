@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  
+  
+  <style type="text/css">
+    /* Add some padding on document's body to prevent the content
+    to go underneath the header and footer */
+    body{        
+        padding-top: 60px;
+        padding-bottom: 40px;
+    }
+    .fixed-header, .fixed-footer{
+        width: 100%;
+        position: fixed;        
+        background: #333;
+        padding: 10px 0;
+        color: #fff;
+    }
+    .fixed-header{
+        top: 0;
+    }
+    .fixed-footer{
+        bottom: 0;
+    }
+    .container{
+        width: 80%;
+        margin: 0 auto; /* Center the DIV horizontally */
+    }
+    nav a{
+        color: #fff;
+        text-decoration: none;
+        padding: 7px 25px;
+        display: inline-block;
+    }
+	
+	background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+}
+</style>
+  
+  <script>
+  var currentSectionCount =1;
+  var maxSectionCount =0;
+  
+  var errorCount = 7;
+  var nonerrorCount = 6;
+  var currentScreen = 1;
+  
+  function previous(){
+  //alert('In function previous currentSectionCount ->'+currentSectionCount);
+  
+  if(currentScreen == 2){
+  
+   if(currentSectionCount ==1){ 
+  currentSectionCount = errorCount;
+  }
+  --currentSectionCount;
+  var dynValue = "error" + currentSectionCount;
+  //alert("error"+currentSectionCount);
+  var elmnt = document.getElementById("error"+currentSectionCount);
+elmnt.scrollIntoView();
+  }else if(currentScreen == 3){
+   if(currentSectionCount ==1){ 
+  currentSectionCount = nonerrorCount;
+  }
+  --currentSectionCount;
+  var dynValue = "nonerror" + currentSectionCount;
+  var elmnt = document.getElementById("nonerror"+currentSectionCount);
+elmnt.scrollIntoView();
+  }
+  
+ 
+
+
+  
+  }
+  
+  function next(){
+  //alert('In function next currentSectionCount ->'+currentSectionCount);
+  
+  
+  if(currentScreen == 2){
+  
+   if(currentSectionCount ==errorCount){ 
+  currentSectionCount = 1;
+  }else{
+  ++currentSectionCount;
+  }
+  
+  var dynValue = "error" + currentSectionCount;
+  //alert("error"+currentSectionCount);
+  var elmnt = document.getElementById("error"+currentSectionCount);
+elmnt.scrollIntoView();
+  }else if(currentScreen == 3){
+   if(currentSectionCount ==nonerrorCount){ 
+  currentSectionCount = 1;
+  }else{
+  ++currentSectionCount;
+  }
+  
+  var dynValue = "nonerror" + currentSectionCount;
+  var elmnt = document.getElementById("nonerror"+currentSectionCount);
+elmnt.scrollIntoView();
+  }
+  
+
+  
+  }
+  
+  
+  
+function myFunction() {
+currentScreen = 2;
+currentSectionCount = 0;
+
+  var x = document.getElementById("demo11");
+    x.style.display = "block";
+  
+  
+  
+   x = document.getElementById("demo3");
+    x.style.display = "block";
+  
+  
+   x = document.getElementById("demo5");
+    x.style.display = "block";
+  
+  
+   x = document.getElementById("demo7");
+    x.style.display = "block";
+  
+   x = document.getElementById("demo9");
+    x.style.display = "block";
+	
+	
+   x = document.getElementById("demo2");
+    x.style.display = "none";
+  
+  
+  
+   x = document.getElementById("demo4");
+    x.style.display = "none";
+  
+  
+   x = document.getElementById("demo6");
+    x.style.display = "none";
+  
+  
+   x = document.getElementById("demo8");
+    x.style.display = "none";
+  
+   x = document.getElementById("demo10");
+    x.style.display = "none";
+  
+}  
+
+
+function myFunctionAll() {
+currentScreen = 1;
+currentSectionCount = 0;
+
+  var x = document.getElementById("demo1");
+    x.style.display = "block";
+  
+  
+  
+   x = document.getElementById("demo3");
+    x.style.display = "block";
+  
+  
+   x = document.getElementById("demo5");
+    x.style.display = "block";
+  
+  
+   x = document.getElementById("demo7");
+    x.style.display = "block";
+  
+   x = document.getElementById("demo9");
+    x.style.display = "block";
+	
+	
+   x = document.getElementById("demo2");
+    x.style.display = "none";
+  
+  
+  
+   x = document.getElementById("demo4");
+    x.style.display = "block";
+  
+  
+   x = document.getElementById("demo6");
+    x.style.display = "block";
+  
+  
+   x = document.getElementById("demo8");
+    x.style.display = "block";
+  
+   x = document.getElementById("demo10");
+    x.style.display = "block";
+  
+}  
+  
+  
+ function showErrorLogsOnly() {
+ currentScreen = 2;
+currentSectionCount = 0;
+ for(i=1;i<nonerrorCount;i++)
+ {
+ //alert("errorCount :"+i);
+  var x = document.getElementById("nonerror"+i);
+    x.style.display = "none";
+ }
+ for(i=1;i<errorCount;i++)
+ {
+  var x = document.getElementById("error"+i);
+    x.style.display = "block";
+ }
+ }
+ 
+ function showNonErrorLogsOnly() {
+ currentScreen = 2;
+currentSectionCount = 0;
+ for(i=1;i<errorCount;i++)
+ {
+ 
+  x = document.getElementById("errorCount"+i);
+    x.style.display = "none";
+ }
+ for(i=1;i<nonerrorCount;i++)
+ {
+  x = document.getElementById("nonerror"+i);
+    x.style.display = "block";
+ }
+
+ }
+
+
+ function myFunction3() {
+
+currentSectionCount = 0;
+currentScreen = 3;
+  var x = document.getElementById("demo1");
+    x.style.display = "none";
+  
+  
+  
+   x = document.getElementById("demo3");
+    x.style.display = "none";
+  
+  
+   x = document.getElementById("demo5");
+    x.style.display = "none";
+  
+  
+   x = document.getElementById("demo7");
+    x.style.display = "none";
+  
+   x = document.getElementById("demo9");
+    x.style.display = "none";
+	
+	
+   x = document.getElementById("demo2");
+    x.style.display = "block";
+  
+  
+  
+   x = document.getElementById("demo4");
+    x.style.display = "block";
+  
+  
+   x = document.getElementById("demo6");
+    x.style.display = "block";
+  
+  
+   x = document.getElementById("demo8");
+    x.style.display = "block";
+  
+   x = document.getElementById("demo10");
+    x.style.display = "block";
+  
+}  
+
+
+  </script>
+  
+</head>
+<body>
+ <div class="fixed-header">
+        <div class="container">
+            <nav>
+                <a href="javascript:myFunctionAll()">Show All logs</a>
+				<a href="javascript:showErrorLogsOnly()">Show Only Error logs</a>
+                <a href="javascript:showNonErrorLogsOnly()">Show Only Non Error logs</a>
+				  <a href="javascript:previous()">Previous</a>
+                <a href="javascript:next()">Next</a>
+            </nav>
+        </div>
+    </div>
+<a href="#exactline">Click here</a>
+safkjkljslkf
+
+  <h2>Simple Collapsible</h2>
+  <p>Click on the button to toggle between showing and hiding content.</p>
+  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo,#demo2,#element3">Simple collapsible</button>
+  
+  <button type="button" class="btn btn-info" data-toggle="collapse3" data-target="#demo,#demo2,#element3">Simple collapsible 2</button>
+
+  <div id="demo" class="collapse">
+    <br>
+  <br>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+  </div>
+  <br>
+  <br>
+   <div id="error1" class="collapse">
+   demo1
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	  <br>
+  <br>
+  </div>
+
+     <div id="error2" class="collapse" >
+   demo2
+   
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	<br>
+  <br>
+  </div>
+  
+   <div id="nonerror1" class="collapse">
+   demo3
+   
+   
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	 <br>
+  <br>
+  </div>
+ 
+   <div id="nonerror2" class="collapse">
+   demo4
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	<br>
+  <br>
+  </div>
+  
+   <div id="error3" class="collapse">
+   demo3
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	  <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+  <br>
+  <br>
+  </div>
+ 
+   <div id="error4" class="collapse">
+   demo4
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	 Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	 Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	 Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	 Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	 Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	 Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	 Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	 Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	<br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br> <br>
+  <br>
+   <br>
+  <br> <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+    <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br> <br>
+  <br>
+   <br>
+  <br> <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+  <br>
+   <br>
+     <br>
+  </div>
+  
+
+   <div id="error5" class="collapse">
+   demo5
+    error5 error5 error5Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </div>
+   <div id="error6" class="collapse">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </div>
+
+   <div id="nonerror3" class="collapse">
+     <br>
+  <br>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+	A paragraph is a group of words put together to form a group that is usually longer than a sentence. Paragraphs are often made up of several sentences. ... This makes it easier to see when one paragraph ends and another begins. In most organized forms of writing, such as essays, paragraphs contain a topic sentence .
+	
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	 demo3
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	 demo3
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	 demo3
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	 demo3
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	 demo3
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	 demo3
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	 demo3
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	 demo3
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	 demo3
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	 demo3
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </div>
+   <div id="error7" class="collapse">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </div>
+  
+ 
+   <div id="nonerror4" class="collapse">
+    SJKAFGKJASGHFKASKJFHJKAFHKJASFHKHF
+  <br>
+  <br>
+  
+  <br>
+  <br>
+  <br>
+    sajflsjdlkfjlskdjfljsldjfl
+  </div>
+
+
+
+
+  <h2>Simple Collapsible asjflkajlsfjlfj</h2>
+  <p>Click on the button to toggle between showing and hiding content.</p>
+  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo,#demo2,#element3">Simple collapsible</button>
+  
+  <button type="button" class="btn btn-info" data-toggle="collapse3" data-target="#demo,#demo2,#element3">Simple collapsible 2</button>
+  <div id="nonerror5" class="collapse">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </div>
+  
+  SJKAFGKJASGHFKASKJFHJKAFHKJASFHKHF
+  <br>
+  <br>
+  
+  <br>
+  <br>
+  <br>
+   <div id="nonerror6" class="collapse">
+    sajflsjdlkfjlskdjfljsldjfl
+  </div>
+</body>
+</html>
